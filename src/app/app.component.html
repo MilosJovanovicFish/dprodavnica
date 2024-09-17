@@ -1,0 +1,55 @@
+<mat-sidenav-container>
+
+    <!-- Navigacioni meni(sa leve strane vertikalno) / sidenav -->
+    <mat-sidenav #sidenav opened="false" fxHide.gt-xs="600px">
+        <mat-nav-list>
+            <a mat-list-item routerLink="/login" (click)="sidenav.close()">
+                <mat-icon>login</mat-icon>
+                Login
+            </a>
+            <a mat-list-item routerLink="/finished-orders" (click)="sidenav.close()">
+                <mat-icon>history</mat-icon>Prethodne kupovine
+            </a>
+            <a mat-list-item routerLink="/product" (click)="sidenav.close()">
+                <mat-icon>book online</mat-icon>Kupi
+            </a>
+            <a mat-list-item routerLink="/cart" (click)="sidenav.close()">
+                <mat-icon>sell</mat-icon>Korpa
+            </a>
+            <a mat-list-item routerLink="/" (click)="sidenav.close()">
+                <mat-icon>logout</mat-icon>
+                Logout
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <!-- Ruter likovi u sidenav-content-u / linija menija -->
+    <mat-sidenav-content>
+
+        <mat-toolbar color="primary">
+            <div fxHide.gt-xs class="menu">
+                <button (click)="sidenav.toggle()">
+                    <mat-icon>menu</mat-icon>
+
+                </button>
+            </div>
+            <div class="home">
+                <a routerLink="/">
+                    <mat-icon>home</mat-icon>
+                </a>
+            </div>
+            <div fxFlex fxLayoutAlign="end" fxLayoutGap="15px" fxHide.xs>
+                <a routerLink="/login">Login</a>
+                <a routerLink="/finished-orders">Prethodne kupovine</a>
+                <a routerLink="/product">Kupi</a>
+                <a routerLink="/cart" class="button fancy-button">Korpa</a>
+                <button mat-raised-button color="primary" (click)="openProfile(this.userService.currentUser.id)">
+                    {{ this.userService.currentUser.email }}
+                </button>
+            </div>
+        </mat-toolbar>
+
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>
